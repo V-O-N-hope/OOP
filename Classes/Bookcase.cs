@@ -15,24 +15,23 @@ namespace WinFormsApp1.Classes
 
         //конструктор + декструтор 
 
-        public Bookcase()
+        public Bookcase(char letter, int num)
         {
-            
+            _books = new List<Book>();
+            this._letter = letter;
+            this._specNumber = num;
+
         }
 
-        ~Bookcase ()
+        ~Bookcase()
         {
-            using (StreamWriter sw = new StreamWriter("logs.txt", append: true))
-            {
-                
-            }
+            // for future для неуправляемых
         }
 
         //свойства
         public int SpecNumber
         {
             get { return _specNumber; }
-            set { _specNumber = value; }
         }
 
         public char Letter

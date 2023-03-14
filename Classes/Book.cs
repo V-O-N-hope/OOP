@@ -2,7 +2,7 @@
 
 namespace WinFormsApp1.Classes
 {
-    internal class Book
+    internal class Book 
     {
         //поля
         protected DateTime _dateOfPublishing;
@@ -10,6 +10,8 @@ namespace WinFormsApp1.Classes
         protected string _author;
         protected string _ganre;
         protected ushort _rating;
+
+        private bool _disposed;
 
         //конструторы и деструкторы + доп при инициализации
 
@@ -20,7 +22,7 @@ namespace WinFormsApp1.Classes
         }
 
         public Book(DateTime date = default(DateTime), string name = "unknown name",
-                    string author = "unknow author", string ganr = "unknown ganre",ushort rating = 0)
+                    string author = "unknow author", string ganr = "unknown ganre", ushort rating = 0)
         {
             this._dateOfPublishing = date;
             this._name = name;
@@ -31,12 +33,8 @@ namespace WinFormsApp1.Classes
 
         ~Book()
         {
-            using (StreamWriter sw = new StreamWriter("logs.txt", append: true))
-            {
-                sw.WriteLine(DateTime.Now + $"{this.ToString()}");
-                sw.WriteLine("We deleted book");
-            }
-        }
+            // для неуправляемых ресуров на будующее
+        }    
 
         //свойства
 
@@ -70,8 +68,6 @@ namespace WinFormsApp1.Classes
             set { this._ganre = value; }
         }
 
-
-
         //методы
 
         public bool myEquality(object? obj)
@@ -89,12 +85,12 @@ namespace WinFormsApp1.Classes
 
         public override string ToString()
         {
-            return "Name: " + this._name +
-                "\nAuthor: " + this._author +
-                "\nGanre: " + this._ganre +
-                "\nDate of publishing: " + this._dateOfPublishing.ToString() +
-                "\nRate: " + ((double)this._rating / 10) + " " +
-                " from 10";
+            return "[Name: " + this._name +
+                "] [Author: " + this._author +
+                "] [Ganre: " + this._ganre +
+                "] [Date of publishing: " + this._dateOfPublishing.ToString() +
+                "] [Rate: " + ((double)this._rating / 10) + " " +
+                " from 10]\n";
 
         }
     }

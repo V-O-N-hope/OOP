@@ -6,17 +6,15 @@ namespace OOP_2_console
     {
         static void Main(string[] args)
         {
-            try
+            ArmWritedBook book = new ArmWritedBook();
+            Bookcase bookcase = new Bookcase('a', 1);
+            Book book1 = new Book();
+            bookcase._books.Add(book);
+            bookcase._books.Add(book1);
+            foreach (var item in bookcase._books)
             {
-                Book book = new Book(name: "Temp book", author: "Ilya Poluectov", ganr: "horror", rating: 100);
+                Console.WriteLine(item.ToString());
             }
-            finally
-            {
-               
-            }
-
-            
-            
         }
     }
 }
